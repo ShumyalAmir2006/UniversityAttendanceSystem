@@ -190,6 +190,7 @@ class schedual {
 };
 
 class notification {
+private:
 	string notificationID;
 	string message;
 	string recieverID;
