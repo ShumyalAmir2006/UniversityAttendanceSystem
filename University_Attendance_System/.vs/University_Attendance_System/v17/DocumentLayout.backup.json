@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Shumyal Coding Projects ,Courses and Edits\\UniversityAttendanceSystem\\University_Attendance_System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7CFDBA46-91B8-48A8-BA39-054DBCF5FE7C}|University_Attendance_System\\University_Attendance_System.vcxproj|F:\\Shumyal Coding Projects ,Courses and Edits\\UniversityAttendanceSystem\\University_Attendance_System\\University_Attendance_System\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7CFDBA46-91B8-48A8-BA39-054DBCF5FE7C}|University_Attendance_System\\University_Attendance_System.vcxproj|solutionrelative:University_Attendance_System\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "F:\\Shumyal Coding Projects ,Courses and Edits\\UniversityAttendanceSystem\\University_Attendance_System\\University_Attendance_System\\Source.cpp",
+              "RelativeDocumentMoniker": "University_Attendance_System\\Source.cpp",
+              "ToolTip": "F:\\Shumyal Coding Projects ,Courses and Edits\\UniversityAttendanceSystem\\University_Attendance_System\\University_Attendance_System\\Source.cpp",
+              "RelativeToolTip": "University_Attendance_System\\Source.cpp",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAAMsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-05-06T18:41:13.796Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
