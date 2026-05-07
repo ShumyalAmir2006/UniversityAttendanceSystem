@@ -1,7 +1,5 @@
 #include<iostream>
 using namespace std;
-
-// BASE CLASS
 class person {
 protected:
 	string id;
@@ -24,18 +22,18 @@ public:
 		cout << "Phone: " << phone << endl;
 	}
 };
-
-// LOGIN CLASS
 class login {
 public:
 	string user_name;
 	string password;
 	bool isauthenticated;
-};
 
-// CLASSES INHERITED BY THE PERSON CLASS
+
+};
+//CLASSES INHERITED BY THE PERSON CLASS
 
 class student :public person {
+
 	float cgpa;
 	string department;
 public:
@@ -44,7 +42,7 @@ public:
 		this->department = department;
 	}
 	void enrollCourse(string course_Name) {
-		// to enroll in a course
+		//  to enroll in a course
 		cout << "Enrolling in course: " << course_Name << endl;
 	}
 	void viewResult() {
@@ -57,7 +55,6 @@ public:
 		cout << "Department: " << department << endl;
 	}
 };
-
 class administration : public person {
 	string role;
 public:
@@ -76,8 +73,8 @@ public:
 		displaybasicinfo();
 		cout << "Role: " << role << endl;
 	}
-};
 
+};
 class faculty :public person {
 	string designation;
 	string department;
@@ -99,7 +96,6 @@ public:
 		cout << "Department: " << department << endl;
 	}
 };
-
 class security : public person {
 	string shift_timing;
 	string assigned_department;
@@ -125,10 +121,13 @@ public:
 		// to reissue a report
 		cout << name << " is reissuing a report." << endl;
 	}
-};
 
-// ADMIN CONTROL
+
+};
+//ADMIN CONTROL
+
 class admin : public administration {
+
 	login login_details;
 public:
 	void setLoginDetails(string username, string password) {
@@ -152,54 +151,183 @@ public:
 		cout << "Removing a user from the system" << endl;
 	}
 };
+//INDEPENDENT CLASSES
 
-// INDEPENDENT CLASSES
 class gates {
 	int gate_No;
 	string location;
 	bool isopen;
-public:
-};
 
+public:
+	void setGateDetails(int gateNo, string loc, bool open) {
+		gate_No = gateNo;
+		location = loc;
+		isopen = open;
+	}
+	void Opengate() {
+		isopen = true;
+		cout << "Gate " << gate_No << " is now open." << endl;
+	}
+	void Closegate() {
+		isopen = false;
+		cout << "Gate " << gate_No << " is now closed." << endl;
+	}
+	void DisplayGateInfo() {
+		cout << "Gate No: " << gate_No << endl;
+		cout << "Location: " << location << endl;
+		cout << "Status: " << (isopen ? "Open" : "Closed") << endl;
+	}
+
+
+};
 class course {
+private:
+
 	string courseID;
 	string course_Name;
 	int creditHours;
 	string instructorID;
+public:
+	void setCoureDetails(string id, string name, int credithrs, string instructorid) {
+		courseID = id;
+		course_Name = name;
+		creditHours = credithrs;
+		instructorID = instructorid;
+	}
+	void displayCourseDetails() {
+		cout << "ID of course is " << courseID << endl;
+		cout << " Name course is " << course_Name << endl;
+		cout << " credit hours of course is" << creditHours << endl;
+		cout << " course's instructor's ID id " << instructorID << endl;
+	}
+	void AssignInstructor(string Instructorid) {
+		instructorID = Instructorid;
+		cout << " instructor with ID" << instructorID << "is assigned to course" << course_Name << endl;
+	}
 };
-
 class report {
-	string repertID;
+	string reportID;
 	string title;
 	string description;
 	string date;
+public:
+	void SetReportDetails(string id, string T, string desc, string D) {
+		reportID = id;
+		title = T;
+		description = desc;
+		date = D;
+	}
+
+	void Generate_Report() {
+		cout << " report of title " << title << " has been generated succesfully" << endl;
+	}
+
+	void DisplayReportDetails() {
+		cout << " ID of repert is" << reportID << endl;
+		cout << "Title of Report is " << title << endl;
+		cout << " Description of  report is " << description << endl;
+		cout << " Date of generation of report is" << date << endl;
+	}
+
+
 };
 
 class department {
-	string dpetID;
+
+	string deptID;
 	string dept_Name;
 	string Headofdept;
-};
+public:
+	void SetDepartmentDetails(string deptid, string deptName, string HOD) {
+		deptID = deptid;
+		dept_Name = deptName;
+		Headofdept = HOD;
+	}
+	void DiplayDepartmentDetails() {
+		cout << " ID of department is " << deptID << endl;
+		cout << " Name of Department is " << dept_Name << endl;
+		cout << " Head of Department is " << Headofdept << endl;
+	}
+	void ChangeHOD(string NewHOD) {
+		Headofdept = NewHOD;
+	}
+	void ShoeNewHOD() {
+		cout << " New Assigned heaad of department is  " << Headofdept << endl;
+	}
 
+
+
+};
 class schedual {
 	string schedualID;
 	string courseID;
 	string day;
 	string time;
 	int room_No;
-};
+public:
+	void SetSchedualDetails(string SID, string Courseid, string d, string t, int R_No) {
+		schedualID = SID;
+		courseID = Courseid;
+		day = d;
+		time = t;
+		room_No = R_No;
+	}
+	void DisplaySchedualDetails() {
+		cout << "Id of Schedual is " << schedualID << endl;
+		cout << "course id is " << courseID << endl;
+		cout << " Day of class is " << day << endl;
+		cout << " class time is " << time << endl;
+		cout << "Class in room number " << room_No << endl;
+	}
+	void UpdateRoom(int NewRoom) {
 
+		room_No = NewRoom;
+		cout << " New Room has been Assigned to class is " << NewRoom << endl;
+	}
+	void ChangeClassTime(string NewTime, string  NewDay) {
+		time = NewTime;
+		day = NewDay;
+
+		cout << " updated time of class is" << NewTime << " " << " On day" << NewDay << endl;
+	}
+
+
+
+
+};
 class notification {
-private:
 	string notificationID;
 	string message;
 	string recieverID;
 	bool isRead;
+public:
+	void SetNotificationDetails(string notif, string msg, string recid, bool Isread) {
+		notificationID = notif;
+
+		message = msg;
+		recieverID = recid;
+		isRead = Isread;
+	}
+	void showNotufucation() {
+		cout << " ID for nitification is " << notificationID << endl;
+		cout << " Message is " << message << endl;
+		cout << "Reciever id is " << recieverID << endl;
+		cout << "Status: "
+			<< (isRead ? "Read" : "Unread") << endl;
+	}
+	void MarkAsRead() {
+		isRead = true;
+		cout << "Notificstion has been marked as read" << isRead << endl;
+	}
+	void MarkAsUnrerad() {
+		isRead = false;
+		cout << " Notification has been marked as unread" << isRead << endl;
+	}
+
 };
 
 int main() {
 
-	// your code here to test classes
-
+	// Create instances of classes and demonstrate functionality
 	return 0;
 }
