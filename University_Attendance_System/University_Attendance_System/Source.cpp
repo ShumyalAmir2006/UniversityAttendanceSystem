@@ -1,4 +1,5 @@
 #include<iostream>
+#include <stdexcept>
 using namespace std;
 class person {
 protected:
@@ -8,11 +9,18 @@ protected:
 	string phone;
 
 public:
-	void setBasicINfo(string id, string name, string email, string phone) {
-		this->id = id;
-		this->name = name;
-		this->Email = email;
-		this->phone = phone;
+	void setBasicInfo(string id, string name, string email, string phone) {
+		try {
+			if (id.empty() || name.empty() || email.empty() || phone.empty())
+				throw invalid_argument("All fields (ID, Name, Email, Phone) are required.");
+			this->id = id;
+			this->name = name;
+			this->Email = email;
+			this->phone = phone;
+		}
+		catch (const invalid_argument& e) {
+			cout << "Input Error: " << e.what() << endl;
+		}
 	}
 
 	void displaybasicinfo() {
@@ -38,9 +46,15 @@ class student :public person {
 	string department;
 public:
 	void setStudentDetails(float cgpa, string department) {
-		this->cgpa = cgpa;
-		this->department = department;
-	}
+    try {
+        if (cgpa < 0.0 || cgpa > 4.0)
+            throw invalid_argument("CGPA must be between 0.0 and 4.0");
+        this->cgpa = cgpa;
+        this->department = department;
+    } catch (const invalid_argument& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+}
 	void enrollCourse(string course_Name) {
 		//  to enroll in a course
 		cout << "Enrolling in course: " << course_Name << endl;
@@ -134,9 +148,15 @@ public:
 		login_details.user_name = username;
 		login_details.password = password;
 	}
-	void Authenticate() {
-		// to authenticate admin
-		cout << "Authenticating admin: " << name << endl;
+	void Authenticate(string inputUser, string inputPass) {
+		try {
+			if (inputUser != login_details.user_name || inputPass != login_details.password)
+				throw runtime_error("Invalid credentials. Access denied.");
+			cout << "Admin authenticated successfully." << endl;
+		}
+		catch (const runtime_error& e) {
+			cout << "Authentication Failed: " << e.what() << endl;
+		}
 	}
 	void DisplayAdminControl() {
 		DisplayAdminInfo();
@@ -160,9 +180,16 @@ class gates {
 
 public:
 	void setGateDetails(int gateNo, string loc, bool open) {
-		gate_No = gateNo;
-		location = loc;
-		isopen = open;
+		try {
+			if (gateNo <= 0)
+				throw out_of_range("Gate number must be a positive integer.");
+			gate_No = gateNo;
+			location = loc;
+			isopen = open;
+		}
+		catch (const out_of_range& e) {
+			cout << "Gate Error: " << e.what() << endl;
+		}
 	}
 	void Opengate() {
 		isopen = true;
@@ -188,11 +215,18 @@ private:
 	int creditHours;
 	string instructorID;
 public:
-	void setCoureDetails(string id, string name, int credithrs, string instructorid) {
-		courseID = id;
-		course_Name = name;
-		creditHours = credithrs;
-		instructorID = instructorid;
+	void setCourseDetails(string id, string name, int credithrs, string instructorid) {
+		try {
+			if (credithrs <= 0 || credithrs > 6)
+				throw invalid_argument("Credit hours must be between 1 and 6.");
+			courseID = id;
+			course_Name = name;
+			creditHours = credithrs;
+			instructorID = instructorid;
+		}
+		catch (const invalid_argument& e) {
+			cout << "Course Error: " << e.what() << endl;
+		}
 	}
 	void displayCourseDetails() {
 		cout << "ID of course is " << courseID << endl;
@@ -280,9 +314,15 @@ public:
 		cout << "Class in room number " << room_No << endl;
 	}
 	void UpdateRoom(int NewRoom) {
-
-		room_No = NewRoom;
-		cout << " New Room has been Assigned to class is " << NewRoom << endl;
+		try {
+			if (NewRoom <= 0)
+				throw invalid_argument("Room number must be positive.");
+			room_No = NewRoom;
+			cout << "New room assigned: " << NewRoom << endl;
+		}
+		catch (const invalid_argument& e) {
+			cout << "Room Update Error: " << e.what() << endl;
+		}
 	}
 	void ChangeClassTime(string NewTime, string  NewDay) {
 		time = NewTime;
