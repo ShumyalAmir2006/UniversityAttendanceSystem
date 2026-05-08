@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 class person {
@@ -474,21 +475,84 @@ public:
 	}
 
 };
+class fileManager {
+	vector<string> fileNames;
+
+public:
+	// Constructor — register all your project files
+	fileManager() {
+		fileNames.push_back("students.txt");
+		fileNames.push_back("persons.txt");
+		fileNames.push_back("courses.txt");
+		fileNames.push_back("reports.txt");
+		fileNames.push_back("login_history.txt");
+	}
+
+	// Clear ONE specific file
+	void clearFile(string fileName) {
+		try {
+			ofstream file(fileName, ios::trunc);  // trunc = wipes file completely
+			if (!file.is_open())
+				throw runtime_error("Could not open " + fileName);
+
+			cout << fileName << " has been cleared." << endl;
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "Error: " << e.what() << endl;
+		}
+	}
+
+	// Clear ALL files at once
+	void clearAllFiles() {
+		try {
+			cout << "=== Clearing All Files ===" << endl;
+			for (int i = 0; i < fileNames.size(); i++) {
+				ofstream file(fileNames[i], ios::trunc);
+				if (!file.is_open())
+					throw runtime_error("Could not clear " + fileNames[i]);
+
+				cout << fileNames[i] << " cleared successfully." << endl;
+				file.close();
+			}
+			cout << "=== All History Deleted ===" << endl;
+		}
+		catch (const runtime_error& e) {
+			cout << "Error: " << e.what() << endl;
+		}
+	}
+
+	// View which files exist
+	void listFiles() {
+		cout << "=== Registered Files ===" << endl;
+		for (int i = 0; i < fileNames.size(); i++) {
+			ifstream file(fileNames[i]);
+			cout << fileNames[i] << " --> "
+				<< (file.is_open() ? "Exists" : "Not Found") << endl;
+			file.close();
+		}
+	}
+};
+
 
 int main() {
 	// Student example
 	student s1;
 	s1.setBasicInfo("S001", "Ali Khan", "ali@uni.edu", "03001234567");
 	s1.setStudentDetails(3.5, "Computer Science");
-	s1.saveStudentToFile();      // saves to students.txt
-	s1.loadStudentsFromFile();   // reads from students.txt
+	// saves to students.txt
+	s1.saveStudentToFile(); 
+	// reads from students.txt
+	s1.loadStudentsFromFile();   
 
 	// Admin login history example
 	admin a1;
 	a1.setBasicInfo("A001", "Admin User", "admin@uni.edu", "03009876543");
 	a1.setLoginDetails("admin123", "pass@123");
-	a1.Authenticate("admin123", "pass@123");   // logs SUCCESS
-	a1.Authenticate("admin123", "wrongpass");  // logs FAILED
+	// logs SUCCESS
+	a1.Authenticate("admin123", "pass@123");  
+	// logs FAILED
+	a1.Authenticate("admin123", "wrongpass");  
 
 	// Report example
 	report r1;
