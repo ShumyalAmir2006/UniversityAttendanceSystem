@@ -1,5 +1,8 @@
 #include<iostream>
 #include <stdexcept>
+#include <fstream>
+#include <string>
+
 using namespace std;
 class person {
 protected:
@@ -20,6 +23,22 @@ public:
 		}
 		catch (const invalid_argument& e) {
 			cout << "Input Error: " << e.what() << endl;
+		}
+	}
+	void saveToFile() {
+		ofstream file("persons.txt", ios::app); // app = append mode
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open persons.txt");
+
+			file << "ID: " << id << ", Name: " << name
+				<< ", Email: " << Email << ", Phone: " << phone << "\n";
+			file << "-------------------------\n";
+			cout << "Person record saved successfully." << endl;
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
 		}
 	}
 
@@ -55,6 +74,41 @@ public:
         cout << "Error: " << e.what() << endl;
     }
 }
+	void saveStudentToFile() {
+		ofstream file("students.txt", ios::app);
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open students.txt");
+
+			file << "ID: " << id << ", Name: " << name
+				<< ", CGPA: " << cgpa
+				<< ", Department: " << department << "\n";
+			file << "-------------------------\n";
+			cout << "Student record saved." << endl;
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
+		}
+	}
+
+	void loadStudentsFromFile() {
+		ifstream file("students.txt");
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open students.txt");
+
+			string line;
+			cout << "=== Student Records ===" << endl;
+			while (getline(file, line)) {
+				cout << line << endl;
+			}
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
+		}
+	}
 	void enrollCourse(string course_Name) {
 		//  to enroll in a course
 		cout << "Enrolling in course: " << course_Name << endl;
@@ -148,16 +202,36 @@ public:
 		login_details.user_name = username;
 		login_details.password = password;
 	}
+	void saveLoginHistory(string inputUser, bool success) {
+		ofstream file("login_history.txt", ios::app);
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open login_history.txt");
+
+			file << "User: " << inputUser
+				<< " | Status: " << (success ? "SUCCESS" : "FAILED")
+				<< " | Time: " << __DATE__ << " " << __TIME__ << "\n";
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
+		}
+	}
+
 	void Authenticate(string inputUser, string inputPass) {
 		try {
 			if (inputUser != login_details.user_name || inputPass != login_details.password)
 				throw runtime_error("Invalid credentials. Access denied.");
+
 			cout << "Admin authenticated successfully." << endl;
+			saveLoginHistory(inputUser, true);   // log success
 		}
 		catch (const runtime_error& e) {
 			cout << "Authentication Failed: " << e.what() << endl;
+			saveLoginHistory(inputUser, false);  // log failure
 		}
 	}
+
 	void DisplayAdminControl() {
 		DisplayAdminInfo();
 		cout << "Admin Control Panel" << endl;
@@ -228,6 +302,23 @@ public:
 			cout << "Course Error: " << e.what() << endl;
 		}
 	}
+	void saveCourseToFile() {
+		ofstream file("courses.txt", ios::app);
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open courses.txt");
+
+			file << "Course ID: " << courseID
+				<< ", Name: " << course_Name
+				<< ", Credit Hours: " << creditHours
+				<< ", Instructor ID: " << instructorID << "\n";
+			file << "-------------------------\n";
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
+		}
+	}
 	void displayCourseDetails() {
 		cout << "ID of course is " << courseID << endl;
 		cout << " Name course is " << course_Name << endl;
@@ -250,6 +341,24 @@ public:
 		title = T;
 		description = desc;
 		date = D;
+	}
+	void saveReportToFile() {
+		ofstream file("reports.txt", ios::app);
+		try {
+			if (!file.is_open())
+				throw runtime_error("Could not open reports.txt");
+
+			file << "Report ID: " << reportID << "\n"
+				<< "Title: " << title << "\n"
+				<< "Description: " << description << "\n"
+				<< "Date: " << date << "\n"
+				<< "-------------------------\n";
+			cout << "Report saved to file." << endl;
+			file.close();
+		}
+		catch (const runtime_error& e) {
+			cout << "File Error: " << e.what() << endl;
+		}
 	}
 
 	void Generate_Report() {
