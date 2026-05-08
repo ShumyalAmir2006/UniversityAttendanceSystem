@@ -476,8 +476,24 @@ public:
 };
 
 int main() {
+	// Student example
+	student s1;
+	s1.setBasicInfo("S001", "Ali Khan", "ali@uni.edu", "03001234567");
+	s1.setStudentDetails(3.5, "Computer Science");
+	s1.saveStudentToFile();      // saves to students.txt
+	s1.loadStudentsFromFile();   // reads from students.txt
 
-	// Create instances of classes and demonstrate functionality
-	// Hello 
+	// Admin login history example
+	admin a1;
+	a1.setBasicInfo("A001", "Admin User", "admin@uni.edu", "03009876543");
+	a1.setLoginDetails("admin123", "pass@123");
+	a1.Authenticate("admin123", "pass@123");   // logs SUCCESS
+	a1.Authenticate("admin123", "wrongpass");  // logs FAILED
+
+	// Report example
+	report r1;
+	r1.SetReportDetails("R001", "Semester Report", "End of semester", "2025-05-01");
+	r1.saveReportToFile();
+
 	return 0;
 }
