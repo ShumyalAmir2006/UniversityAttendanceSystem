@@ -1,8 +1,13 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include <stdexcept>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <ctime>      
+#include <sstream>    
+#include <iomanip>    
+
 
 using namespace std;
 class person {
@@ -486,6 +491,7 @@ public:
 		fileNames.push_back("courses.txt");
 		fileNames.push_back("reports.txt");
 		fileNames.push_back("login_history.txt");
+		fileNames.push_back("attendance.txt");
 	}
 
 	// Clear ONE specific file
@@ -533,31 +539,185 @@ public:
 		}
 	}
 };
+struct AttendanceRecord {
+	string studentID;
+	string courseID;
+	string type;
+	string timestamp;
+};
 
+class AttendanceManager {
+private:
+	string getCurrentTimestamp() {
+		time_t now = time(nullptr);
+		tm* t = localtime(&now);
+		ostringstream oss;
+		oss << put_time(t, "%Y-%m-%d %H:%M:%S");
+		return oss.str();
+	}
+
+	int timeToSeconds(const string& ts) {
+		int h, m, s;
+		sscanf(ts.c_str() + 11, "%d:%d:%d", &h, &m, &s);
+		return h * 3600 + m * 60 + s;
+	}
+
+public:
+	void markCheckIn(const string& studentID, const string& courseID) {
+		try {
+			if (studentID.empty() || courseID.empty())
+				throw invalid_argument("Student ID and Course ID are required.");
+
+			ofstream file("attendance.txt", ios::app);
+			if (!file.is_open())
+				throw runtime_error("Could not open attendance.txt");
+
+			string ts = getCurrentTimestamp();
+			file << "StudentID: " << studentID
+				<< " | CourseID: " << courseID
+				<< " | Type: CHECK_IN"
+				<< " | Time: " << ts << "\n";
+			file.close();
+			cout << "CHECK-IN: " << studentID << " checked into "
+				<< courseID << " at " << ts << endl;
+		}
+		catch (const exception& e) {
+			cout << "Attendance Error: " << e.what() << endl;
+		}
+	}
+
+	void markCheckOut(const string& studentID, const string& courseID) {
+		try {
+			if (studentID.empty() || courseID.empty())
+				throw invalid_argument("Student ID and Course ID are required.");
+
+			ifstream inFile("attendance.txt");
+			if (!inFile.is_open())
+				throw runtime_error("Could not read attendance.txt");
+
+			bool hasCheckIn = false;
+			string line;
+			while (getline(inFile, line)) {
+				if (line.find("StudentID: " + studentID) != string::npos &&
+					line.find("CourseID: " + courseID) != string::npos &&
+					line.find("CHECK_IN") != string::npos) {
+					hasCheckIn = true;
+				}
+			}
+			inFile.close();
+
+			if (!hasCheckIn)
+				throw runtime_error("No CHECK_IN found for " + studentID +
+					" in " + courseID + ". Cannot check out.");
+
+			ofstream outFile("attendance.txt", ios::app);
+			if (!outFile.is_open())
+				throw runtime_error("Could not open attendance.txt");
+
+			string ts = getCurrentTimestamp();
+			outFile << "StudentID: " << studentID
+				<< " | CourseID: " << courseID
+				<< " | Type: CHECK_OUT"
+				<< " | Time: " << ts << "\n";
+			outFile.close();
+			cout << "CHECK-OUT: " << studentID << " left "
+				<< courseID << " at " << ts << endl;
+		}
+		catch (const exception& e) {
+			cout << "Attendance Error: " << e.what() << endl;
+		}
+	}
+
+	void calculatePresenceDuration(const string& studentID, const string& courseID) {
+		try {
+			ifstream file("attendance.txt");
+			if (!file.is_open())
+				throw runtime_error("Could not open attendance.txt");
+
+			string checkInTime = "";
+			string checkOutTime = "";
+			string line;
+
+			while (getline(file, line)) {
+				if (line.find("StudentID: " + studentID) == string::npos) continue;
+				if (line.find("CourseID: " + courseID) == string::npos) continue;
+
+				string ts = line.substr(line.rfind("Time: ") + 6);
+				if (line.find("CHECK_IN") != string::npos) checkInTime = ts;
+				if (line.find("CHECK_OUT") != string::npos) checkOutTime = ts;
+			}
+			file.close();
+
+			cout << "\n=== Attendance Report ===" << endl;
+			cout << "Student  : " << studentID << endl;
+			cout << "Course   : " << courseID << endl;
+
+			if (checkInTime.empty()) {
+				cout << "Status   : No check-in record found." << endl;
+				return;
+			}
+
+			cout << "Check-in : " << checkInTime << endl;
+
+			if (checkOutTime.empty()) {
+				cout << "Check-out: Still in class / no early exit logged." << endl;
+				return;
+			}
+
+			cout << "Check-out: " << checkOutTime << endl;
+
+			int inSec = timeToSeconds(checkInTime);
+			int outSec = timeToSeconds(checkOutTime);
+			int diff = outSec - inSec;
+
+			if (diff < 0) {
+				cout << "Error    : Check-out is before check-in." << endl;
+				return;
+			}
+
+			int hours = diff / 3600;
+			int minutes = (diff % 3600) / 60;
+			int seconds = diff % 60;
+
+			cout << "Duration : " << hours << "h " << minutes
+				<< "m " << seconds << "s" << endl;
+
+			if (diff < 1800)
+				cout << "WARNING: Student was present for less than 30 minutes!" << endl;
+		}
+		catch (const exception& e) {
+			cout << "Report Error: " << e.what() << endl;
+		}
+	}
+
+	void viewCourseAttendance(const string& courseID) {
+		try {
+			ifstream file("attendance.txt");
+			if (!file.is_open())
+				throw runtime_error("Could not open attendance.txt");
+
+			cout << "\n=== Attendance for Course: " << courseID << " ===" << endl;
+			string line;
+			bool found = false;
+			while (getline(file, line)) {
+				if (line.find("CourseID: " + courseID) != string::npos) {
+					cout << line << endl;
+					found = true;
+				}
+			}
+			if (!found)
+				cout << "No records found for course " << courseID << endl;
+			file.close();
+		}
+		catch (const exception& e) {
+			cout << "View Error: " << e.what() << endl;
+		}
+	}
+};
 
 int main() {
-	// Student example
-	student s1;
-	s1.setBasicInfo("S001", "Ali Khan", "ali@uni.edu", "03001234567");
-	s1.setStudentDetails(3.5, "Computer Science");
-	// saves to students.txt
-	s1.saveStudentToFile(); 
-	// reads from students.txt
-	s1.loadStudentsFromFile();   
 
-	// Admin login history example
-	admin a1;
-	a1.setBasicInfo("A001", "Admin User", "admin@uni.edu", "03009876543");
-	a1.setLoginDetails("admin123", "pass@123");
-	// logs SUCCESS
-	a1.Authenticate("admin123", "pass@123");  
-	// logs FAILED
-	a1.Authenticate("admin123", "wrongpass");  
-
-	// Report example
-	report r1;
-	r1.SetReportDetails("R001", "Semester Report", "End of semester", "2025-05-01");
-	r1.saveReportToFile();
+	
 
 	return 0;
 }
