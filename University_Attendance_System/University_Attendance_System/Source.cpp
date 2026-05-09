@@ -71,15 +71,16 @@ class student :public person {
 	string department;
 public:
 	void setStudentDetails(float cgpa, string department) {
-    try {
-        if (cgpa < 0.0 || cgpa > 4.0)
-            throw invalid_argument("CGPA must be between 0.0 and 4.0");
-        this->cgpa = cgpa;
-        this->department = department;
-    } catch (const invalid_argument& e) {
-        cout << "Error: " << e.what() << endl;
-    }
-}
+		try {
+			if (cgpa < 0.0 || cgpa > 4.0)
+				throw invalid_argument("CGPA must be between 0.0 and 4.0");
+			this->cgpa = cgpa;
+			this->department = department;
+		}
+		catch (const invalid_argument& e) {
+			cout << "Error: " << e.what() << endl;
+		}
+	}
 	void saveStudentToFile() {
 		ofstream file("students.txt", ios::app);
 		try {
@@ -105,7 +106,7 @@ public:
 				throw runtime_error("Could not open students.txt");
 
 			string line;
-			cout << "=== Student Records ===" << endl;
+			cout << " Student Records " << endl;
 			while (getline(file, line)) {
 				cout << line << endl;
 			}
@@ -512,7 +513,7 @@ public:
 	// Clear ALL files at once
 	void clearAllFiles() {
 		try {
-			cout << "=== Clearing All Files ===" << endl;
+			cout << " Clearing All Files " << endl;
 			for (int i = 0; i < fileNames.size(); i++) {
 				ofstream file(fileNames[i], ios::trunc);
 				if (!file.is_open())
@@ -521,7 +522,7 @@ public:
 				cout << fileNames[i] << " cleared successfully." << endl;
 				file.close();
 			}
-			cout << "=== All History Deleted ===" << endl;
+			cout << "All History Deleted " << endl;
 		}
 		catch (const runtime_error& e) {
 			cout << "Error: " << e.what() << endl;
@@ -530,7 +531,7 @@ public:
 
 	// View which files exist
 	void listFiles() {
-		cout << "=== Registered Files ===" << endl;
+		cout << "Registered Files " << endl;
 		for (int i = 0; i < fileNames.size(); i++) {
 			ifstream file(fileNames[i]);
 			cout << fileNames[i] << " --> "
@@ -648,7 +649,7 @@ public:
 			}
 			file.close();
 
-			cout << "\n=== Attendance Report ===" << endl;
+			cout << "\nAttendance Report " << endl;
 			cout << "Student  : " << studentID << endl;
 			cout << "Course   : " << courseID << endl;
 
@@ -696,7 +697,7 @@ public:
 			if (!file.is_open())
 				throw runtime_error("Could not open attendance.txt");
 
-			cout << "\n=== Attendance for Course: " << courseID << " ===" << endl;
+			cout << "\nAttendance for Course: " << courseID << " " << endl;
 			string line;
 			bool found = false;
 			while (getline(file, line)) {
@@ -717,7 +718,7 @@ public:
 
 int main() {
 
-	
+
 
 	return 0;
 }
