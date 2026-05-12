@@ -1,3 +1,0 @@
-StudentID: S001 | CourseID: CS101 | Type: CHECK_IN | Time: 2026-05-09 22:47:40
-StudentID: S002 | CourseID: CS101 | Type: CHECK_IN | Time: 2026-05-09 22:47:40
-StudentID: S001 | CourseID: CS101 | Type: CHECK_OUT | Time: 2026-05-09 22:47:40

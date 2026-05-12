@@ -124,6 +124,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Faculty.cpp" />
+    <ClCompile Include="Security.cpp" />
+    <ClCompile Include="Course.cpp" />
+    <ClCompile Include="Report.cpp" />
+    <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="AttendanceManager.cpp" />
+    <ClCompile Include="Menus.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="Administration.h" />
+    <ClInclude Include="Faculty.h" />
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="Gate.h" />
+    <ClInclude Include="Course.h" />
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="AttendanceManager.h" />
+    <ClInclude Include="Menus.h" />
+    <ClInclude Include="Notification.h" />
+    <ClInclude Include="Schedule.h" />
+    <ClInclude Include="Report.h" />
+    <ClInclude Include="Security.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="Login.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

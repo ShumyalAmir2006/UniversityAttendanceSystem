@@ -1,0 +1,2 @@
+Officer: Shabaz | Person: 121 | Role: Student | Gate: Gate 1 | Type: ENTRY | Time: 2026-05-12 19:07:04
+Officer: Shabaz | Person: 121 | Role: Student | Gate: Gate 2 | Type: EXIT | Time: 2026-05-12 19:07:25
