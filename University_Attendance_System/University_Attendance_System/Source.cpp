@@ -7,10 +7,14 @@
 #include "AttendanceManager.h"
 #include "FileManager.h"
 #include "Menus.h"
+#include "DataSeeder.h"
 
 using namespace std;
 
 int main() {
+
+    DataSeeder seeder;
+    seeder.seedAll();
 
     Admin adminUser;
     adminUser.setBasicInfo("A001", "Admin User", "admin@uni.edu", "03001234567");

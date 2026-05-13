@@ -98,5 +98,8 @@
     <ClInclude Include="Menus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DataSeeder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

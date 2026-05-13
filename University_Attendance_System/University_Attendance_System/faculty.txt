@@ -1,0 +1,100 @@
+ID: F001 | Name: Fahad Chaudhry | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F002 | Name: Asad Sheikh | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F003 | Name: Imran Qureshi | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F004 | Name: Junaid Siddiqui | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F005 | Name: Kamran Ansari | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F006 | Name: Nabeel Butt | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F007 | Name: Omer Rana | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F008 | Name: Qasim Mirza | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F009 | Name: Raza Baig | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F010 | Name: Saad Rizvi | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F011 | Name: Talha Hashmi | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F012 | Name: Umair Abbasi | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F013 | Name: Waqar Farooqi | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F014 | Name: Yasir Gillani | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F015 | Name: Zubair Javed | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F016 | Name: Ayesha Khalid | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F017 | Name: Fatima Lodhi | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F018 | Name: Zainab Memon | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F019 | Name: Sana Niazi | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F020 | Name: Hira Pasha | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F021 | Name: Nadia Rauf | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F022 | Name: Rabia Sabir | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F023 | Name: Sadia Tahir | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F024 | Name: Amna Usmani | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F025 | Name: Bushra Wali | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F026 | Name: Farah Yousaf | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F027 | Name: Gul Zaidi | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F028 | Name: Huma Bhatti | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F029 | Name: Iqra Dar | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F030 | Name: Javeria Gul | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F031 | Name: Kiran Haider | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F032 | Name: Laiba Iqbal | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F033 | Name: Mariam Janjua | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F034 | Name: Noor Kazmi | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F035 | Name: Pakistan Laghari | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F036 | Name: Rimsha Mughal | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F037 | Name: Saba Naqvi | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F038 | Name: Tooba Paracha | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F039 | Name: Urwa Rajput | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F040 | Name: Zara Satti | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F041 | Name: Ahmed Tiwana | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F042 | Name: Muhammad Virk | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F043 | Name: Ali Warraich | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F044 | Name: Hassan Zaman | Desig: Associate Professor | Dept: AI
+--------------------------------------------------
+ID: F045 | Name: Usman Gondal | Desig: Assistant Professor | Dept: IT
+--------------------------------------------------
+ID: F046 | Name: Bilal Khan | Desig: Lecturer | Dept: CS
+--------------------------------------------------
+ID: F047 | Name: Hamza Ahmed | Desig: Senior Lecturer | Dept: AI
+--------------------------------------------------
+ID: F048 | Name: Zain Ali | Desig: Lab Engineer | Dept: IT
+--------------------------------------------------
+ID: F049 | Name: Omar Hussain | Desig: Professor | Dept: CS
+--------------------------------------------------
+ID: F050 | Name: Tariq Malik | Desig: Associate Professor | Dept: AI
+--------------------------------------------------

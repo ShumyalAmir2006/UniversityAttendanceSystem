@@ -143,6 +143,7 @@
     <ClInclude Include="Course.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="AttendanceManager.h" />
+    <ClInclude Include="DataSeeder.h" />
     <ClInclude Include="Menus.h" />
     <ClInclude Include="Notification.h" />
     <ClInclude Include="Schedule.h" />
